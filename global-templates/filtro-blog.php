@@ -13,7 +13,7 @@ if ( $terms ) { ?>
 	<nav class="filter-navbar navbar navbar-expand-lg justify-content-center navbar-light mb-2">
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#filter-navbar-collapse" aria-controls="filter-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-label mr-1"><?php echo __( 'Por temas', 'kemon' ); ?></span> <span class="navbar-toggler-icon"></span>
+			<span class="navbar-toggler-label mr-1"><?php echo __( 'Por temas', 'smn' ); ?></span> <span class="navbar-toggler-icon"></span>
 		</button>
 
 		<div class="collapse navbar-collapse" id="filter-navbar-collapse">

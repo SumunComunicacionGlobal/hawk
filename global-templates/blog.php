@@ -15,7 +15,7 @@ if ( $q->have_posts() ) { ?>
 
 	<div class="wrapper hfeed blog-block" id="wrapper-blog">
 
-		<div class="<?php echo esc_attr( $container ); ?>" id="prefooter-content" tabindex="-1">
+		<div class="<?php echo esc_attr( $container ); ?>" tabindex="-1">
 
 			<div class="row">
 

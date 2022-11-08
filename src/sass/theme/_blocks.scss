@@ -40,7 +40,7 @@ body.understrap-no-sidebar {
     font-weight: $btn-font-weight;
 }
 
-.wp-block-button__link {
+.wp-block-button__link:not(.has-background) {
     background-color: $primary;
 }
 

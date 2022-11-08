@@ -268,3 +268,30 @@ function smn_reusable_block_shortcode( $atts ) {
     return $content;
 }
 add_shortcode( 'reusable', 'smn_reusable_block_shortcode' );
+
+function sumun_shortcode_subcategorias() {
+	ob_start();
+	get_template_part( 'global-templates/subcategories' );
+	$r = ob_get_clean();
+
+	return $r;
+}
+add_shortcode( 'subcategorias', 'sumun_shortcode_subcategorias' );
+
+function sumun_shortcode_blog() {
+	ob_start();
+	get_template_part( 'global-templates/blog' );
+	$r = ob_get_clean();
+
+	return $r;
+}
+add_shortcode( 'blog', 'sumun_shortcode_blog' );
+
+function sumun_shortcode_casos_de_exito() {
+	ob_start();
+	get_template_part( 'global-templates/casos-de-exito' );
+	$r = ob_get_clean();
+
+	return $r;
+}
+add_shortcode( 'casos_de_exito', 'sumun_shortcode_casos_de_exito' );

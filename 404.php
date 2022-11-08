@@ -29,7 +29,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 							<div class="col-md-6 text-center mb-3">
 
-								<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icon-404.svg" width="400" height="400"  alt="<?php echo __( 'Error 404', 'kemon' ) ; ?>" />
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icon-404.svg" width="400" height="400"  alt="<?php echo __( 'Error 404', 'smn' ) ; ?>" />
 
 							</div>
 
