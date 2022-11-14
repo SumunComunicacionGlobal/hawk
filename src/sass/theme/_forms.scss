@@ -79,6 +79,8 @@
     width: 1%;
     min-width: 0; // https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
     margin-bottom: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 
@@ -92,6 +94,8 @@
   .btn {
     position: relative;
     z-index: 2;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 
     &:focus {
       z-index: 3;
