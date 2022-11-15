@@ -9,7 +9,7 @@ if ( function_exists( 'register_block_style' ) ) {
     register_block_style(
         'core/cover',
         array(
-            'name'         => 'header-cover',
+            'name'         => 'image-header',
             'label'        => __( 'Cabecera', 'smn-admin' ),
             'is_default'   => false,
         )
