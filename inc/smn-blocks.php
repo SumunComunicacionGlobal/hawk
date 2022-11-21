@@ -77,6 +77,15 @@ if ( function_exists( 'register_block_style' ) ) {
             
     }
 
+    register_block_style(
+        'core/praragrap',
+        array(
+            'name'         => 'cifra-circulo',
+            'label'        => __( 'Cifra círculo', 'smn-admin' ),
+            'is_default'   => false,
+        )
+    );
+
     $carousel_block_types = array(
         'core/group',
         'core/gallery',

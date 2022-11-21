@@ -117,3 +117,59 @@ body.understrap-no-sidebar {
 
 }
 
+.is-style-cifra-circulo {
+    position: relative;
+    @extend .display-1;
+    color: $primary;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 7rem;
+    line-height: 7rem;
+    background-color: $light;
+    // outline: 1rem double $light;
+    text-align: center;
+    // padding: $spacer;
+    margin: $spacer $spacer $spacer * 3;
+    // margin-bottom: $spacer * 3;
+
+    &:before {
+        content: "";
+        position: absolute;
+        left: -$spacer;
+        right: -$spacer;
+        top: -$spacer;
+        bottom: -$spacer;
+        border: 8px solid $light;
+        border-radius: 7rem;
+    }
+}
+
+.form-steps {
+
+    .wp-block-column:not(:last-child) .is-style-cifra-circulo {
+
+        &:after {
+
+            @include media-breakpoint-up(md) {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: calc( 100% + $spacer*2 );
+                width: $spacer * .5;
+                border-top: 1px dashed $primary;
+            }
+
+            @include media-breakpoint-up(lg) {
+                width: $spacer * 4;
+            }
+
+            @include media-breakpoint-up(xl) {
+                width: $spacer * 8;
+            }
+
+        }
+
+    }
+
+}
