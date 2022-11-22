@@ -3,6 +3,7 @@
     
     label {
         font-size: $font-size-sm;
+        width: 100%;
     }
     
     .wpcf7-response-output {
@@ -47,6 +48,7 @@
       }
 
       input[type=submit] {
+        @extend .btn;
         @extend .btn-dark;
         color: $white;
         transition: $transition-base;
@@ -63,7 +65,26 @@
             color: $white;
         }
       }    
-    
+
+      .wpcf7-form {
+
+        p {
+          @extend .form-group;
+        }
+  
+      }
+  
+      // not valid tip for each control
+      .wpcf7-not-valid-tip {
+        color: theme-color("danger");
+      }
+  
+      // validation errors ourput bottom of form
+      .wpcf7-validation-errors {
+        color: theme-color("danger");
+        border: 1px solid $gray-200;
+      }
+  
 }
 
 .input-group {

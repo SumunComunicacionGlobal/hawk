@@ -8,6 +8,31 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+add_filter( 'wpcf7_form_tag', 'smn_wpcf7_form_control_class', 10, 2 );
+function smn_wpcf7_form_control_class( $scanned_tag, $replace ) {
+
+   $excluded_types = array(
+        'acceptance',
+        'checkbox',
+        'radio',
+   );
+
+   if ( in_array( $scanned_tag['type'], $excluded_types ) ) return $scanned_tag;
+
+   switch ($scanned_tag['type']) {
+    case 'submit':
+        $scanned_tag['options'][] = 'class:btn';
+        $scanned_tag['options'][] = 'class:btn-primary';
+        break;
+    
+    default:
+        $scanned_tag['options'][] = 'class:form-control';
+        break;
+   }
+   
+   return $scanned_tag;
+}
+
 add_action( 'loop_start', 'archive_loop_start', 10 );
 function archive_loop_start() {
     if (is_archive() || is_home() || is_search() ) {

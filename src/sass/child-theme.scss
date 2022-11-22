@@ -4,7 +4,7 @@
 // @import "assets/understrap/theme/woocommerce"; // <------- Loads WooCommerce style fixes. Comment out if you aren't using WooCommerce
 
 // Optional files - If you don´t use the corresponding scripts/fonts comment em out
-@import "assets/fontawesome/font-awesome";                           // <------- Font Awesome Icon font
+// @import "assets/fontawesome/font-awesome";                           // <------- Font Awesome Icon font
 @import "assets/underscores";                            // <------- Underscores media styles
 
 // Any additional imported files //
@@ -13,7 +13,7 @@
 
 @import "assets/understrap/theme/colors";                       // <-------- This creates the necessary bootstrap color classes.
 @import "assets/understrap/theme/blocks";                       // <-------- This adds Bootstrap styles to blocks.
-@import "assets/understrap/theme/contact-form7";                // <-------- Contact Form 7 - Bootstrap 4 support
+// @import "assets/understrap/theme/contact-form7";                // <-------- Contact Form 7 - Bootstrap 4 support
 
 @import "theme/font_faces";
 @import "theme/typography";
@@ -32,7 +32,7 @@
 @import "theme/woocommerce";
 
 @import "theme/widgets";
-@import "theme/slick";
+// @import "theme/slick";
 @import "theme/slider";
 @import "theme/footer";
 
