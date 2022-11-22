@@ -1,0 +1,11 @@
+{
+    "name": "acf/timeline",
+    "title": "Timeline",
+    "category": "formatting",
+    "icon": "editor-ul",
+    "keywords": ["linea", "tiempo", "historia"],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "timeline.php"
+    }
+}

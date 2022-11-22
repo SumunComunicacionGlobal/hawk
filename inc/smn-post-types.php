@@ -390,7 +390,6 @@ add_action( 'init', 'custom_taxonomy_sector', 10 );
 
 }
 
-
 function wpb_change_title_text( $title ){
      $screen = get_current_screen();
   
