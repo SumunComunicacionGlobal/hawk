@@ -34,15 +34,21 @@ function smn_wpcf7_form_control_class( $scanned_tag, $replace ) {
 }
 
 add_action( 'loop_start', 'archive_loop_start', 10 );
-function archive_loop_start() {
-    if (is_archive() || is_home() || is_search() ) {
+function archive_loop_start( $query ) {
+
+    if ( isset( $query->query['ignore_row'] ) && $query->query['ignore_row'] ) return false;
+    
+    if ( ( isset( $query->query['add_row'] ) && $query->query['add_row'] ) || ( is_archive() || is_home() || is_search() ) ) {
         echo '<div class="row">';
     }
 }
 
 add_action( 'loop_end', 'archive_loop_end', 10 );
-function archive_loop_end() {
-    if (is_archive() || is_home() || is_search() ) {
+function archive_loop_end( $query ) {
+
+    if ( isset( $query->query['ignore_row'] ) && $query->query['ignore_row'] ) return false;
+
+    if ( ( isset( $query->query['add_row'] ) && $query->query['add_row'] ) || ( is_archive() || is_home() || is_search() ) ) {
         echo '</div>';
     }
 }
