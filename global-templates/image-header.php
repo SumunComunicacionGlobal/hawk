@@ -23,7 +23,7 @@ if ( is_singular() ) {
 
 	<?php if ( $image_id ) echo wp_get_attachment_image( $image_id, 'large', false, array('class' => 'wp-block-cover__image-background') ); ?>
 
-	<div class="wp-block-cover__inner-container">
+	<div class="wp-block-cover__inner-container container">
 
 		<?php if ( is_singular( 'post' ) ) { ?>
 

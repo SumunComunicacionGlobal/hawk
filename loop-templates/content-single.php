@@ -13,8 +13,6 @@ defined( 'ABSPATH' ) || exit;
 
 	<div class="entry-content">
 
-		<?php get_template_part( 'global-templates/image-header' ); ?>
-
 		<?php
 		the_content();
 		understrap_link_pages();

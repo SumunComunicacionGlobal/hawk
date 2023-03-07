@@ -5,6 +5,10 @@
         font-size: $font-size-sm;
         width: 100%;
     }
+
+    .wpcf7-list-item > label {
+      display: flex;
+    }
     
     .wpcf7-response-output {
         height: auto !important;

@@ -34,23 +34,24 @@ function lorem_ipsum_shortcode() {
 }
 add_shortcode('lorem_ipsum', 'lorem_ipsum_shortcode');
 
-// add_filter( 'get_post_metadata', 'thumbnail_id_placeholder', 10, 4 );
-function thumbnail_id_placeholder( $value, $object_id, $meta_key, $single ) {
+add_filter( 'default_post_metadata', 'term_thumbnail_id_placeholder', 10, 5 );
+add_filter( 'default_term_metadata', 'term_thumbnail_id_placeholder', 10, 5 );
+function term_thumbnail_id_placeholder( $value, $object_id, $meta_key, $single, $meta_type ) {
 
-    $has_thumb = true;
-    $pt = get_post_type( $object_id );
-    if ('testimonio' == $pt) return $value;
-    
-    $meta_cache = wp_cache_get( $object_id, 'post_meta' );
-    if (!isset( $meta_cache['_thumbnail_id'] )) {
-        $has_thumb = false;
+    switch ( $meta_key ) {
+        case 'thumbnail_id':
+        case '_thumbnail_id':
+            return random_image_id();
+
+            break;
+        
+        default:
+            return $value;
+            break;
     }
 
-
-    if ( !$has_thumb && !is_admin() && '_thumbnail_id' == $meta_key ) {
-        return random_image_id();
-    }
     return $value;
+
 }
 
 function random_image_url($dir = 'uploads')

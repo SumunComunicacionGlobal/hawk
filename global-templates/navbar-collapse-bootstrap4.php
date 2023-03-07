@@ -72,9 +72,20 @@ if ( is_page() ) {
 		?>
 		<!-- end custom logo -->
 
+		<!--
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'understrap' ); ?>">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+		-->
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'understrap' ); ?>">
+			<span class="navbar-toggler-icon navbar-animated-toggler">
+				<span class="slot slot-1"></span>
+				<span class="slot slot-2"></span>
+				<span class="slot slot-3"></span>
+			</span>
+		</button>
+
 
 		<!-- The WordPress Menu goes here -->
 		<?php

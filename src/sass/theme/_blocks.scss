@@ -18,11 +18,6 @@ body.understrap-no-sidebar {
     }
 }
 
-#main > article > .entry-content > *:first-child,
-#main > .wp-block-cover:first-child {
-    padding-top: 10rem !important;
-}
-
 .wp-block-group, 
 .wp-block-cover {
 
@@ -95,14 +90,6 @@ body.understrap-no-sidebar {
             gap: 0;
         }
     }
-}
-
-@include media-breakpoint-down(xs) {
-
-	.wp-block-spacer {
-		max-height: $spacer * 2;
-	}
-
 }
 
 .redes-sociales {

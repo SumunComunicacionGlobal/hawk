@@ -17,6 +17,8 @@ $post_type = get_post_type();
 
 ?>
 
+<?php get_template_part( 'global-templates/image-header' ); ?>
+
 <div class="wrapper" id="archive-wrapper">
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
@@ -27,8 +29,6 @@ $post_type = get_post_type();
 			<?php get_template_part( 'global-templates/left-sidebar-check' ); ?>
 
 			<main class="site-main" id="main">
-
-				<?php get_template_part( 'global-templates/image-header' ); ?>
 
 				<?php if ( is_tax() ) {
 					echo get_term_meta( get_queried_object_id(), 'secondary_description', true );

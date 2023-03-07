@@ -3,6 +3,10 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+if ( es_blog() ) {
+	return false;
+}
+
 $container = get_theme_mod( 'understrap_container_type' );
 
 $args = array(
@@ -17,7 +21,9 @@ if ( $q->have_posts() ) { ?>
 
 		<div class="<?php echo esc_attr( $container ); ?>" tabindex="-1">
 
+			<?php if( is_singular() ): ?>
 			<div class="row">
+			<?php endif; ?>
 
 				<?php while ( $q->have_posts() ) { $q->the_post();
 
@@ -25,7 +31,9 @@ if ( $q->have_posts() ) { ?>
 
 				} ?>
 
+			<?php if( is_singular() ): ?>
 			</div>
+			<?php endif; ?>
 
 		</div>
 

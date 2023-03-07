@@ -1,0 +1,55 @@
+.facetwp-facet {
+    margin-bottom: $spacer !important;
+}
+
+p.facet-label {
+    margin-bottom: $spacer/2;
+    font-size: $font-size-sm;
+    color: $gray-500;
+}
+
+select.facetwp-dropdown {
+    min-width: 200px;
+}
+.fs-wrap {
+    width: 200px !important;
+}
+.facetwp-type-dropdown select,
+.facetwp-type-fselect .fs-label-wrap,
+.facetwp-search {
+    @extend .form-control;
+}
+.facetwp-type-dropdown select,
+.facetwp-type-fselect .fs-label-wrap {
+    background-color: $secondary-10;
+    color: $white;
+}
+
+.facetwp-type-fselect .fs-label-wrap .fs-label {
+    padding: 0;
+}
+  
+.facetwp-pager {
+	@extend .pagination;
+
+	.facetwp-page {
+		@extend .page-link;
+		margin-right: 0;
+
+		&.active {
+			background-color: $primary;
+			color: $white;
+		}
+
+		&:first-child {
+			border-top-left-radius: $border-radius;
+			border-bottom-left-radius: $border-radius;
+		}
+
+		&:last-child {
+			border-top-right-radius: $border-radius;
+			border-bottom-right-radius: $border-radius;
+		}
+
+	}
+}

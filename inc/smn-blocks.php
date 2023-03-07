@@ -101,6 +101,16 @@ if ( function_exists( 'register_block_style' ) ) {
                 'is_default'   => false,
             )
         );
+
+        register_block_style(
+            $block_type,
+            array(
+                'name'         => 'slick-carousel-logos',
+                'label'        => __( 'Carrusel Logos', 'smn-admin' ),
+                'is_default'   => false,
+            )
+        );
+
     }
             
 

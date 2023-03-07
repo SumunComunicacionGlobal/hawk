@@ -91,6 +91,41 @@ jQuery(document).ready(function($) {
 //   ]
 // });
 
+// jQuery('.wp-block-group.is-layout-flex.is-style-slick-carousel-logos, .wp-block-group.is-style-slick-carousel-logos > .wp-block-group__inner-container, .wp-block-gallery.is-style-slick-carousel-logos').slick({
+//   dots: true,
+//   arrows: true,
+//   infinite: true,
+//   speed: 300,
+//   slidesToShow: 6,
+//   slidesToScroll: 6,
+//   autoplay: false,
+//   responsive: [
+//     {
+//       breakpoint: 992,
+//       settings: {
+//         slidesToShow: 4,
+//         slidesToScroll: 4
+//       }
+//     },
+//     {
+//       breakpoint: 782,
+//       settings: {
+//         slidesToShow: 3,
+//         slidesToScroll: 3
+//       }
+//     },
+//     {
+//       breakpoint: 600,
+//       settings: {
+//         slidesToShow: 2,
+//         slidesToScroll: 2
+//       }
+//     }    // You can unslick at a given breakpoint now by adding:
+//     // settings: "unslick"
+//     // instead of a settings object
+//   ]
+// });
+
 
 // REPRODUCIR VÍDEO CUANDO LLEGAS A ÉL
 
