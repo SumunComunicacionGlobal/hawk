@@ -38,6 +38,8 @@ add_filter( 'default_post_metadata', 'term_thumbnail_id_placeholder', 10, 5 );
 add_filter( 'default_term_metadata', 'term_thumbnail_id_placeholder', 10, 5 );
 function term_thumbnail_id_placeholder( $value, $object_id, $meta_key, $single, $meta_type ) {
 
+    if ( is_admin() ) return $value;
+
     switch ( $meta_key ) {
         case 'thumbnail_id':
         case '_thumbnail_id':
