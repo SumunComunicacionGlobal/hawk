@@ -185,11 +185,25 @@ function list_block_wrapper( $block_content, $block ) {
         $block_content = str_replace( 
             array( '<ul class="', '<ol class="'), 
             array( '<ul class="wp-block-list ', '<ol class="wp-block-list '), $block_content );
-        }
+        
         $block_content = str_replace( 
             array( '<ul>', '<ol>'), 
             array( '<ul class="wp-block-list">', '<ol class="wp-block-list">'), $block_content );
+    }
+    return $block_content;
+}
 
+add_filter( 'render_block', 'table_block_icons', 10, 2 );
+function table_block_icons( $block_content, $block ) {
+    if ( $block['blockName'] === 'core/table' ) {
+
+        $block_content = str_replace( 
+            array( '>v</td>', '>x</td>'), 
+            array( '><i class="fa fa-check has-green-color"></i></td>', '><i class="fa fa-close has-red-color"></i></td>'), 
+            $block_content 
+        );
+        
+    }
     return $block_content;
 }
 

@@ -33,7 +33,7 @@ function smn_wpcf7_form_control_class( $scanned_tag, $replace ) {
    return $scanned_tag;
 }
 
-add_action( 'loop_start', 'archive_loop_start', 10 );
+// add_action( 'loop_start', 'archive_loop_start', 10 );
 function archive_loop_start( $query ) {
 
     if ( isset( $query->query['ignore_row'] ) && $query->query['ignore_row'] ) return false;
@@ -43,7 +43,7 @@ function archive_loop_start( $query ) {
     }
 }
 
-add_action( 'loop_end', 'archive_loop_end', 10 );
+// add_action( 'loop_end', 'archive_loop_end', 10 );
 function archive_loop_end( $query ) {
 
     if ( isset( $query->query['ignore_row'] ) && $query->query['ignore_row'] ) return false;
@@ -69,10 +69,10 @@ function smn_body_classes( $classes ) {
 }
 
 
-add_filter( 'post_class', 'bootstrap_post_class', 10, 3 );
+// add_filter( 'post_class', 'bootstrap_post_class', 10, 3 );
 function bootstrap_post_class( $classes, $class, $post_id ) {
     if ( is_archive() || is_home() || is_search() || in_array( 'hfeed-post', $class ) ) {
-        $classes[] = 'col-sm-6 col-lg-4 stretch-linked-block'; 
+        $classes[] = 'col-sm-6 col-lg-4'; 
     }
 
     return $classes;
@@ -206,3 +206,30 @@ function smn_do_not_include_children_in_product_cat_archive( $query ) {
         $query->tax_query->queries[0]['include_children'] = 0;
     }
 }
+
+add_filter( 'term_links-sector', 'sector_btn_term_links' );
+function sector_btn_term_links( $links ) {
+
+    $new_links = array();
+    
+    foreach( $links as $link ) {
+        $new_links[] = str_replace( '<a ', '<a class="btn btn-secondary" ', $link );
+    }
+    
+    return $new_links;
+
+}
+
+add_filter( 'term_links-perfil', 'perfil_btn_term_links' );
+function perfil_btn_term_links( $links ) {
+
+    $new_links = array();
+    
+    foreach( $links as $link ) {
+        $new_links[] = str_replace( '<a ', '<a class="btn btn-primary" ', $link );
+    }
+    
+    return $new_links;
+
+}
+

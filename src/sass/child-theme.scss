@@ -4,7 +4,7 @@
 // @import "assets/understrap/theme/woocommerce"; // <------- Loads WooCommerce style fixes. Comment out if you aren't using WooCommerce
 
 // Optional files - If you don´t use the corresponding scripts/fonts comment em out
-// @import "assets/fontawesome/font-awesome";                           // <------- Font Awesome Icon font
+@import "assets/fontawesome/font-awesome";                           // <------- Font Awesome Icon font
 @import "assets/underscores";                            // <------- Underscores media styles
 
 // Any additional imported files //
@@ -34,7 +34,7 @@
 @import "theme/woocommerce";
 
 @import "theme/widgets";
-// @import "theme/slick";
+@import "theme/slick";
 @import "theme/slider";
 @import "theme/footer";
 @import "theme/timeline";

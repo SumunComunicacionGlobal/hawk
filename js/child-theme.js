@@ -1,6 +1,6 @@
 /*!
   * Understrap v1.0.1 (https://understrap.com)
-  * Copyright 2013-2022 The Understrap Authors (https://github.com/understrap/understrap/graphs/contributors)
+  * Copyright 2013-2023 The Understrap Authors (https://github.com/understrap/understrap/graphs/contributors)
   * Licensed under GPL (http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
   */
 (function (global, factory) {
@@ -869,37 +869,70 @@
     });
   });
   /* Carruseles */
-  // jQuery('.slick-carousel, .wp-block-group.is-style-slick-carousel > .wp-block-group__inner-container, .wp-block-gallery.is-style-slick-carousel').slick({
-  //   dots: false,
+
+  jQuery('.slick-slider').slick({
+    dots: true,
+    arrows: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true
+  });
+  jQuery('.slick-carousel, .wp-block-group.is-style-slick-carousel > .wp-block-group__inner-container, .wp-block-gallery.is-style-slick-carousel').slick({
+    dots: false,
+    arrows: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    responsive: [{
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    }, {
+      breakpoint: 576,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    } // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+    ]
+  }); // jQuery('.wp-block-group.is-layout-flex.is-style-slick-carousel-logos, .wp-block-group.is-style-slick-carousel-logos > .wp-block-group__inner-container, .wp-block-gallery.is-style-slick-carousel-logos').slick({
+  //   dots: true,
   //   arrows: true,
   //   infinite: true,
   //   speed: 300,
-  //   slidesToShow: 4,
-  //   slidesToScroll: 1,
-  //   autoplay: true,
+  //   slidesToShow: 6,
+  //   slidesToScroll: 6,
+  //   autoplay: false,
   //   responsive: [
   //     {
   //       breakpoint: 992,
   //       settings: {
-  //         slidesToShow: 3,
-  //         slidesToScroll: 1
+  //         slidesToShow: 4,
+  //         slidesToScroll: 4
   //       }
   //     },
   //     {
-  //       breakpoint: 576,
+  //       breakpoint: 782,
+  //       settings: {
+  //         slidesToShow: 3,
+  //         slidesToScroll: 3
+  //       }
+  //     },
+  //     {
+  //       breakpoint: 600,
   //       settings: {
   //         slidesToShow: 2,
   //         slidesToScroll: 2
   //       }
-  //     },
-  //     {
-  //       breakpoint: 480,
-  //       settings: {
-  //         slidesToShow: 1,
-  //         slidesToScroll: 1
-  //       }
-  //     }
-  //     // You can unslick at a given breakpoint now by adding:
+  //     }    // You can unslick at a given breakpoint now by adding:
   //     // settings: "unslick"
   //     // instead of a settings object
   //   ]

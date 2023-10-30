@@ -12,7 +12,7 @@ get_header();
 $container = get_theme_mod( 'understrap_container_type' );
 ?>
 
-<?php get_template_part( 'global-templates/image-header' ); ?>
+<?php // get_template_part( 'global-templates/image-header' ); ?>
 
 <div class="wrapper" id="single-wrapper">
 
@@ -44,6 +44,8 @@ $container = get_theme_mod( 'understrap_container_type' );
 			<?php get_template_part( 'global-templates/right-sidebar-check' ); ?>
 
 		</div><!-- .row -->
+
+		<?php get_template_part( 'global-templates/related-posts' ); ?>
 
 	</div><!-- #content -->
 

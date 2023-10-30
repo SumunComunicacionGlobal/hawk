@@ -43,7 +43,7 @@ function understrap_all_excerpts_get_more_link( $post_excerpt ) {
 	return $post_excerpt;
 }
 
-// add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 function custom_excerpt_length( $length ) {
      return 25;
 }

@@ -6,7 +6,12 @@
 		.wp-post-image {
 			margin-bottom: $spacer;
 		}
+
     }
+
+	// #main > .row > div:nth-child(odd) > article > .row.flex-row-reverse {
+	// 	flex-direction: row !important;
+	// }
 }
 
 .post-navigation {

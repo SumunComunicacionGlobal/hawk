@@ -19,21 +19,13 @@ if ( $q->have_posts() ) { ?>
 
 	<div class="wrapper hfeed blog-block" id="wrapper-blog">
 
-		<div class="<?php echo esc_attr( $container ); ?>" tabindex="-1">
+		<div class="slick-carousel">
 
-			<?php if( is_singular() ): ?>
-			<div class="row">
-			<?php endif; ?>
+			<?php while ( $q->have_posts() ) { $q->the_post();
 
-				<?php while ( $q->have_posts() ) { $q->the_post();
+				get_template_part( 'loop-templates/content' );
 
-					get_template_part( 'loop-templates/content' );
-
-				} ?>
-
-			<?php if( is_singular() ): ?>
-			</div>
-			<?php endif; ?>
+			} ?>
 
 		</div>
 

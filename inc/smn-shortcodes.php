@@ -3,6 +3,8 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+add_filter( 'widget_text', 'do_shortcode' );
+
 function contenido_pagina($atts) {
 	extract( shortcode_atts(
 		array(
@@ -80,52 +82,181 @@ function post_link_sh( $atts ) {
 }
 add_shortcode('post_link', 'post_link_sh');
 
-function paginas_hijas() {
+function smn_taxonomy( $atts ) {
+
+	extract( shortcode_atts(
+		array(
+				'slug' 	=> 'category',
+		), $atts)	
+	);
+
+	$terms = get_terms( array('taxonomy' => $slug) );
+	$taxonomy_label = get_taxonomy_labels( get_taxonomy( $slug ) )->singular_name;
+	$r = '';
+
+	if ( $terms ) {
+
+		$r .= '<div class="paginas-hijas taxonomy-terms my-3">';
+
+			$r .= '<div class="row">';
+
+			foreach ($terms as $term) {
+				$r .= '<div class="col-sm-6 col-lg-4 mb-3 stretch-linked-block">';
+					$r .= '<div class="card shadow-sm">';
+						$r .= '<div class="card-body">';
+							$r .= '<header class="entry-header">';
+								$r .= '<p class="badge badge-secondary">' . $taxonomy_label . '</p>';
+								$r .= '<h2 class="h5 entry-title"><a href="'.get_term_link( $term ).'" class="stretched-link">'.$term->name.'</a></h2>';
+							$r .= '</header>';
+						$r .= '</div>';
+					$r .= '</div>';
+				$r .= '</div>';
+				}
+
+			$r .= '</div>';
+
+		$r .= '</div>';
+
+	}
+
+	return $r;
+}
+add_shortcode( 'taxonomy', 'smn_taxonomy' );
+
+function paginas_hijas( $atts ) {
+
+	extract( shortcode_atts(
+		array(
+				'id' 	=> 0,
+				'hide_img' => true,
+				'post_type_archive' => false,
+		), $atts)	
+	);
+	$id = intval($id);
+
 	global $post;
-	if ( is_post_type_hierarchical( $post->post_type ) /*&& '' == $post->post_content */) {
+	$r = '';
+
+
+	if ( $post_type_archive ) {
+
+		$args = array(
+			'post_type'			=> $post_type_archive,
+			'posts_per_page'	=> -1,
+			'orderby'			=> 'menu_order',
+			'order'				=> 'ASC',
+		);
+
+		$tag = get_post_type_object( $post_type_archive )->labels->singular_name;
+
+		$query = new WP_Query($args);
+
+		if ($query->have_posts() ) {
+
+			$r .= '<div class="paginas-hijas my-3">';
+
+				$r .= '<div class="row">';
+
+				while($query->have_posts() ) {
+					$query->the_post();
+
+					$r .= '<div class="' . COL_CLASSES . '">';
+
+						ob_start();
+						get_template_part( 'loop-templates/content', '', ['tag' => $tag, 'hide_img' => $hide_img ] );
+						$r .= ob_get_clean();
+			
+					$r .= '</div>';
+
+				}
+
+				$r .= '</div>';
+
+			$r .= '</div>';
+
+		}
+
+		wp_reset_postdata();
+
+	} elseif ( is_post_type_hierarchical( $post->post_type ) /*&& '' == $post->post_content */) {
+
 		$args = array(
 			'post_type'			=> array($post->post_type),
 			'posts_per_page'	=> -1,
-			'post_status'		=> 'publish',
 			'orderby'			=> 'menu_order',
 			'order'				=> 'ASC',
 			'post_parent'		=> $post->ID,
 		);
-		$r = '';
+
+		if ( $id ) $args['post_parent'] = $id;
+
+		$tag = get_the_title( $args['post_parent'] );
+
 		$query = new WP_Query($args);
 		if ($query->have_posts() ) {
-			$r .= '<div class="contenido-adicional mt-5">';
-			// $r .= '<h3>'.__( 'Contenido en', 'smn' ).' "'.$post->post_title.'"</h3>';
-			// $r .= '<ul>';
-			while($query->have_posts() ) {
-				$query->the_post();
-				// $r .= '<li>';
-					$r .= '<a class="btn btn-primary btn-lg mr-2 mb-2 pagina-hija" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title().'" role="button" aria-pressed="false">'.get_the_title().'</a>';
-				$r .= '</li>';
-			}
-			// $r .= '</ul>';
-			// $r .= '</div>';
+
+			$r .= '<div class="paginas-hijas my-3">';
+
+				$r .= '<div class="row">';
+
+				while($query->have_posts() ) {
+					$query->the_post();
+
+					ob_start();
+					get_template_part( 'loop-templates/content', '', ['tag' => $tag, 'hide_img' => $hide_img ] );
+					$r .= ob_get_clean();
+					// $r .= '<a class="btn btn-primary btn-lg mr-2 mb-2 pagina-hija" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title().'" role="button" aria-pressed="false">'.get_the_title().'</a>';
+			
+				}
+
+				$r .= '</div>';
+
+			$r .= '</div>';
+
 		} elseif(0 != $post->post_parent) {
 			wp_reset_postdata();
 			$current_post_id = get_the_ID();
 			$args['post_parent'] = $post->post_parent;
+			if ( $id ) $args['post_parent'] = $id;
+			$args['post__not_in'] = array( $post->ID ); 
 			$query = new WP_Query($args);
+
+			$tag = get_the_title( $post->post_parent );
+
 			if ($query->have_posts() && $query->found_posts > 1 ) {
-				$r .= '<div class="contenido-adicional">';
-				while($query->have_posts() ) {
-					$query->the_post();
-					if ($current_post_id == get_the_ID()) {
-						$r .= '<span class="btn btn-primary btn-sm mr-2 mb-2">'.get_the_title().'</span>';
-					} else {
-						$r .= '<a class="btn btn-outline-primary btn-sm mr-2 mb-2" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title().'" role="button" aria-pressed="false">'.get_the_title().'</a>';
+
+				$r .= '<div class="paginas-hijas paginas-hermanas my-3">';
+
+					$r .= '<p class="h4">' . __( 'Ver más', 'smn' ) . '</p>';
+
+					$r .= '<div class="row">';
+
+					while($query->have_posts() ) {
+						$query->the_post();
+						// if ($current_post_id == get_the_ID()) {
+						// 	$r .= '<span class="btn btn-primary btn-sm mr-2 mb-2">'.get_the_title().'</span>';
+						// } else {
+						// 	$r .= '<a class="btn btn-outline-primary btn-sm mr-2 mb-2" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title().'" role="button" aria-pressed="false">'.get_the_title().'</a>';
+						// }
+
+						ob_start();
+						get_template_part( 'loop-templates/content', '', ['tag' => $tag, 'hide_img' => $hide_img ] );
+						$r .= ob_get_clean();
+
 					}
-				}
+
+					$r .= '</div>';
+
 				$r .= '</div>';
 			}
 		}
+
 		wp_reset_postdata();
-		return $r;
+
 	}
+
+	return $r;
+
 }
 add_shortcode( 'paginas_hijas', 'paginas_hijas' );
 
@@ -136,7 +267,7 @@ function mostrar_paginas_hijas($content) {
 	global $post;
 	if (has_shortcode( $post->post_content, 'paginas_hijas' )) return $content;
 
-	return $content . paginas_hijas();
+	return $content . paginas_hijas( array() );
 
 }
 
@@ -295,3 +426,11 @@ function sumun_shortcode_casos_de_exito() {
 	return $r;
 }
 add_shortcode( 'casos_de_exito', 'sumun_shortcode_casos_de_exito' );
+
+function smn_widget_reserva_demo() {
+	
+	$r = '<img src="'.get_stylesheet_directory_uri().'/img/widget-reserva-demo.png" />';
+
+	return $r;
+}
+add_shortcode( 'widget_reserva_demo', 'smn_widget_reserva_demo' );

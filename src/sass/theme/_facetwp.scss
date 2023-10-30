@@ -53,3 +53,17 @@ select.facetwp-dropdown {
 
 	}
 }
+
+.flyout-row.name-limpiar_filtro {
+	
+	h3,
+	label {
+		display: none;
+	}
+}
+
+.facetwp-flyout-close {
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: $font-weight-bold;
+}

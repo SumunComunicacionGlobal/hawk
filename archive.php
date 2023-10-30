@@ -14,10 +14,11 @@ get_header();
 
 $container = get_theme_mod( 'understrap_container_type' );
 $post_type = get_post_type();
+$post_type_object = get_post_type_object( $post_type );
 
 ?>
 
-<?php get_template_part( 'global-templates/image-header' ); ?>
+<?php // get_template_part( 'global-templates/image-header' ); ?>
 
 <div class="wrapper" id="archive-wrapper">
 
@@ -48,19 +49,43 @@ $post_type = get_post_type();
 				
 				if ( have_posts() ) { ?>
 
-					<?php
-					// Start the loop.
-					while ( have_posts() ) {
-						the_post();
+					<div class="row">
 
-						/*
-						 * Include the Post-Format-specific template for the content.
-						 * If you want to override this in a child theme, then include a file
-						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-						 */
-						get_template_part( 'loop-templates/content', $post_type );
-					}
-				} else {
+						<?php
+						// Start the loop.
+						while ( have_posts() ) {
+							the_post();
+
+							if ( $post_type_object->exclude_from_search ) { ?>
+
+								<div class="col-12">
+
+									<?php get_template_part( 'loop-templates/content', 'show-all' ); ?>
+
+								</div>
+
+							<?php } else { ?>
+
+								<div class="<?php echo COL_CLASSES; ?>">
+
+									<?php
+									/*
+									* Include the Post-Format-specific template for the content.
+									* If you want to override this in a child theme, then include a file
+									* called content-___.php (where ___ is the Post Format name) and that will be used instead.
+									*/
+									get_template_part( 'loop-templates/content', $post_type );
+									?>
+
+								</div>
+
+							<?php }
+						}
+						?>
+
+						</div>
+
+				<?php } else {
 					get_template_part( 'loop-templates/content', 'none' );
 				}
 				?>
@@ -69,8 +94,6 @@ $post_type = get_post_type();
 					get_template_part( 'global-templates/content-fragments', '', array('post_ids' => get_term_meta( get_queried_object_id(), 'bottom_fragments', true ) ) );
 					echo get_term_meta( get_queried_object_id(), 'terciary_description', true ); 
 				} ?>
-
-				<?php get_template_part( 'global-templates/related-posts' ); ?>
 
 			</main><!-- #main -->
 

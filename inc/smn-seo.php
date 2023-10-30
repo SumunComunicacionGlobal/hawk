@@ -72,3 +72,10 @@ function wpdocs_filter_gallery_img_atts( $atts, $attachment ) {
     }
     return $atts;
 }
+
+add_filter( 'rank_math/frontend/breadcrumb/items', function( $crumbs, $class ) {
+	if (function_exists('icl_get_home_url') && apply_filters( 'wpml_current_language', null ) != apply_filters('wpml_default_language', NULL ) ){
+        $crumbs[0][1] = apply_filters( 'wpml_home_url', get_home_url() );
+    }
+	return $crumbs;
+}, 10, 2);

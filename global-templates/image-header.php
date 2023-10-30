@@ -3,6 +3,8 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+if ( is_page_template() ) return false;
+
 $image_id = false;
 $title = '';
 $description = '';
@@ -15,37 +17,41 @@ if ( is_singular() ) {
 	$title = get_the_archive_title();
 	$description = get_the_archive_description();
 }
+
+if ( $title ) {
 ?>
 
-<header class="wp-block-cover alignfull is-style-image-header">
+	<header class="wp-block-cover alignfull is-style-image-header">
 
-	<span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span>
+		<span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span>
 
-	<?php if ( $image_id ) echo wp_get_attachment_image( $image_id, 'large', false, array('class' => 'wp-block-cover__image-background') ); ?>
+		<?php if ( $image_id ) echo wp_get_attachment_image( $image_id, 'large', false, array('class' => 'wp-block-cover__image-background') ); ?>
 
-	<div class="wp-block-cover__inner-container container">
+		<div class="wp-block-cover__inner-container container">
 
-		<?php if ( is_singular( 'post' ) ) { ?>
+			<?php if ( is_singular( 'post' ) ) { ?>
 
-			<div class="entry-meta text-white">
+				<div class="entry-meta text-white">
 
-				<?php understrap_posted_on(); ?>
+					<?php understrap_posted_on(); ?>
 
-			</div><!-- .entry-meta -->
+				</div><!-- .entry-meta -->
 
-		<?php } ?>
+			<?php } ?>
 
-		<h1 class="entry-title"><?php echo $title; ?></h1>
+			<h1 class="entry-title"><?php echo $title; ?></h1>
 
-		<?php if ( $description) { ?>
+			<?php if ( $description) { ?>
+				
+				<div class="lead"><?php echo $description; ?></div>
 			
-			<div class="lead"><?php echo $description; ?></div>
-		
-		<?php } ?>
+			<?php } ?>
 
-	</div>
+		</div>
 
-</header>
+	</header>
+
+<?php } ?>
 
 <?php smn_breadcrumb(); ?>
 

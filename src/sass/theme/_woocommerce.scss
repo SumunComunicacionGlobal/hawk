@@ -1,0 +1,26 @@
+.woocommerce form .form-row {
+    display: block;
+}
+
+.coupon {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacer;
+
+    &:before,
+    &:after {
+        content: none !important;
+    }
+}
+
+div.product div.summary + * {
+    clear: both;
+}
+
+#add_payment_method table.cart td.actions .coupon .input-text, 
+.woocommerce-cart table.cart td.actions .coupon .input-text, 
+.woocommerce-checkout table.cart td.actions .coupon .input-text {
+    padding: $input-padding-y $input-padding-x;
+}

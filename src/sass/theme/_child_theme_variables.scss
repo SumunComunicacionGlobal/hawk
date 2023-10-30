@@ -140,7 +140,7 @@ $escaped-characters: (
 // Quickly modify global styling by enabling or disabling optional features.
 
 $enable-caret:                                true !default;
-$enable-rounded:                              false;
+$enable-rounded:                              true !default;
 $enable-shadows:                              false !default;
 $enable-gradients:                            false !default;
 $enable-transitions:                          true !default;
@@ -218,7 +218,7 @@ $paragraph-margin-bottom:   1rem !default;
 
 $grid-breakpoints: (
   xs: 0,
-  sm: 576px,
+  sm: 600px,
   md: 782px,
   lg: 992px,
   xl: 1280px
@@ -259,8 +259,8 @@ $line-height-sm:              1.2;
 $border-width:                1px !default;
 $border-color:                $gray-300 !default;
 
-$border-radius:               .25rem !default;
-$border-radius-lg:            .3rem !default;
+$border-radius:               .5rem;
+$border-radius-lg:            .75rem;
 $border-radius-sm:            .2rem !default;
 
 $rounded-pill:                50rem !default;

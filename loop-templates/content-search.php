@@ -11,37 +11,45 @@ defined( 'ABSPATH' ) || exit;
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<header class="entry-header">
+	<div class="card">
 
-		<?php
-		the_title(
-			sprintf( '<h2 class="entry-title"><a class="stretched-link" href="%s" rel="bookmark">', esc_url( get_permalink() ) ),
-			'</a></h2>'
-		);
-		?>
+		<div class="card-body">
 
-		<?php if ( 'post' === get_post_type() ) : ?>
+			<header class="entry-header">
 
-			<div class="entry-meta">
+				<?php
+				the_title(
+					sprintf( '<h2 class="entry-title"><a class="stretched-link" href="%s" rel="bookmark">', esc_url( get_permalink() ) ),
+					'</a></h2>'
+				);
+				?>
 
-				<?php understrap_posted_on(); ?>
+				<?php if ( 'post' === get_post_type() ) : ?>
 
-			</div><!-- .entry-meta -->
+					<div class="entry-meta">
 
-		<?php endif; ?>
+						<?php understrap_posted_on(); ?>
 
-	</header><!-- .entry-header -->
+					</div><!-- .entry-meta -->
 
-	<div class="entry-summary">
+				<?php endif; ?>
 
-		<?php the_excerpt(); ?>
+			</header><!-- .entry-header -->
 
-	</div><!-- .entry-summary -->
+			<div class="entry-summary">
 
-	<footer class="entry-footer">
+				<?php the_excerpt(); ?>
 
-		<?php understrap_entry_footer(); ?>
+			</div><!-- .entry-summary -->
 
-	</footer><!-- .entry-footer -->
+			<footer class="entry-footer">
+
+				<?php understrap_entry_footer(); ?>
+
+			</footer><!-- .entry-footer -->
+
+		</div>
+
+	</div>
 
 </article><!-- #post-## -->
