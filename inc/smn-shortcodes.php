@@ -3,8 +3,6 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-add_filter( 'widget_text', 'do_shortcode' );
-
 function contenido_pagina($atts) {
 	extract( shortcode_atts(
 		array(
