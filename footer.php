@@ -27,7 +27,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 		<div class="row align-items-center">
 
-			<div class="col-md-6">
+			<div class="col-md-6 col-lg-4">
 
 				<footer class="site-footer" id="colophon">
 
@@ -41,7 +41,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 			</div><!--col end -->
 
-			<div class="col-md-6">
+			<div class="col-md-6 col-lg-8">
 
 				<nav id="legal-nav" class="navbar navbar-expand navbar-light" aria-labelledby="legal-nav-label">
 
