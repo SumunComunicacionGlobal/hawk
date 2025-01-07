@@ -8,12 +8,14 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$post_type = get_post_type();
+global $post;
+$post_type = $post->post_type;
 $post_type_object = get_post_type_object( $post_type );
 $link = get_the_permalink();
+$link_alt = get_post_type_archive_link( $post_type ) . '#post-' . get_the_ID();
 
 
-$card_classes = '';
+$card_classes = 'card';
 $card_body_classes = '';
 $tag = false;
 $hide_img = false;
@@ -27,32 +29,31 @@ if ( isset($args['tag']) ) {
 }
 if ( isset($args['hide_img']) ) $hide_img = $args['hide_img'];
 
-if ( $post_type_object->exclude_from_search ) {
-	$link = get_post_type_archive_link( $post_type ) . '#post-' . get_the_ID();
+if ( 'modulo' == $post_type ) {
+	if ( !$post->post_content ) {
+		$link = $link_alt;
+	}
+} elseif ( $post_type_object->exclude_from_search ) {
+	$link = $link_alt;
 } else {
-	$card_classes = 'card shadow-sm stretch-linked-block';
+	$card_classes = 'card stretch-linked-block';
 	$card_body_classes = 'card-body';
 }
 
 ?>
 
-<article <?php post_class( 'hfeed-post mb-3' ); ?> id="post-<?php the_ID(); ?>">
+<article <?php post_class( 'hfeed-post mb-3 animated o-anim-ready fadeIn delay-100ms' ); ?> id="post-<?php the_ID(); ?>">
 
 	<div class="<?php echo $card_classes; ?>">
-
-		<?php if (!$hide_img) echo get_the_post_thumbnail( $post->ID, 'large', ['class' => 'mb-2 card-img-top'] ); ?>
-
+		<div class="card-img card-img-top">
+			<?php if (!$hide_img) echo get_the_post_thumbnail( $post->ID, 'medium', ['class' => 'mb-0 card-img-top'] ); ?>
+			<?php if ( $tag ) echo '<span class="badge badge-secondary">'. $tag .'</span>'; ?>
+		</div>
 		<div class="<?php echo $card_body_classes; ?>">
 				
 			<header class="entry-header">
 
-				<?php if ( $tag ) echo '<p class="badge badge-secondary">'. $tag .'</p>'; ?>
-
 				<?php if ( 'post' === $post_type ) : ?>
-
-					<div class="entry-meta">
-						<?php understrap_posted_on(); ?>
-					</div><!-- .entry-meta -->
 
 				<?php endif; ?>
 
@@ -80,12 +81,6 @@ if ( $post_type_object->exclude_from_search ) {
 				?>
 
 			</div><!-- .entry-content -->
-
-			<footer class="entry-footer">
-
-				<?php understrap_entry_footer(); ?>
-
-			</footer><!-- .entry-footer -->
 
 		</div>
 
