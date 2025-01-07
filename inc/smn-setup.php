@@ -30,12 +30,27 @@ function smn_setup() {
 // add_filter( 'wp_trim_excerpt', 'understrap_all_excerpts_get_more_link' );
 function understrap_all_excerpts_get_more_link( $post_excerpt ) {
 	if ( ! is_admin() ) {
-		$post_excerpt = $post_excerpt . ' [...]';
+		// $post_excerpt = $post_excerpt . ' [...]';
+        $btn_text = __( 'Read More...', 'understrap' );
+        if ( 'modulo' == get_post_type() ) {
+            global $post;
+            
+            if ( !$post->post_content ) return $post_excerpt;
+            
+            $btn_text_field = get_field('btn_text');
+            if ( $btn_text_field ) {
+                $btn_text = $btn_text_field;
+            } else {
+                $btn_text = get_the_title();
+            }
+        }
+
+        $btn_text .= ' >>';
         // $post_excerpt .= '<p><a class="btn btn-secondary understrap-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __( 'Read More...', 'understrap' ) . '</a></p>';
         $post_excerpt .= '<div class="wp-block-buttons">';
-            $post_excerpt .= '<div class="wp-block-button is-style-arrow-link">';
-                $post_excerpt .= '<a class="wp-block-button__link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">';
-                    $post_excerpt .= __( 'Read More...', 'understrap' );
+            $post_excerpt .= '<div class="wp-block-button is-style-outline">';
+                $post_excerpt .= '<a class="wp-block-button__link has-white-color has-text-color has-link-color" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">';
+                    $post_excerpt .= $btn_text;
                 $post_excerpt .= '</a>';
             $post_excerpt .= '</div>';
         $post_excerpt .= '</div>';
